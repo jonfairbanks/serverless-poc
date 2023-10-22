@@ -1,1 +1,2 @@
+# THESE SHOULD BE IN A TERRAFORM WORKSPACE OR PASSED AS ENV VARS
 primary_domain = "bsord.dev"

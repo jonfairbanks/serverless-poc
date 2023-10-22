@@ -1,17 +1,19 @@
 import './App.css';
 import { useState } from 'react';
 
+const apiDomain = window.REACT_APP_API_DOMAIN
+
 const App = () => {
 
   const [loading, setLoading] = useState(false)
   const [responseText, setText] = useState('')
   const [note, setNote] = useState('')
 
-  async function addNote(url, note) {
+  async function addNote(note) {
     setLoading(true)
     setText('')
 
-    fetch(url,{
+    fetch(`https://${apiDomain}/notes`,{
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -39,7 +41,7 @@ const App = () => {
           Type your note and click send
         </p>
         <button
-          onClick={()=>{addNote(`https://api.bsord.dev/notes`,note)}}
+          onClick={()=>{addNote(note)}}
           disabled={loading}
         >
           {loading? "Loading..": "Save note"}
