@@ -47,23 +47,22 @@ AWS Console > User Profile > Security Credentials > Access Keys > Click `Create 
 4)  `terraform apply`
 
 CERT VALIDATION WILL SAY STILL CREATING UNTIL YOU COMPLETE STEP 3
-YOU MUST POINT YOUR DNS SN SERVERS TO AWS IN ORDER FOR CERT TO COMPLETE
+YOU MUST POINT YOUR DNS NS SERVERS TO AWS IN ORDER FOR CERT TO COMPLETE
 THIS CAN TAKE MANY MINUTES
 
 ## Step 3: Point domain to AWS Route 53
 https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/migrate-dns-domain-in-use.html
 
 ### Get NS servers from zone and set your NS record for the domain to include those 4 name servers
-In the Route 53 console, get the name servers for your hosted zone:
 - Sign in to the AWS Management Console and open the Route 53 console at https://console.aws.amazon.com/route53/.
 - In the navigation pane, choose Hosted zones.
 - On the Hosted zones page, choose the name for the applicable hosted zone.
-- Make note of the four names listed for Name servers in the Hosted zone details section.
+- **Make note of the four names listed for Name servers in the Hosted zone details section.**
 
-IMPORTANT: Set NS servers of domain in your registrar to point to AWS NS servers
+**IMPORTANT:** Set NS servers of domain in your registrar to point to AWS NS servers
 
-### Validate certificates are valid (can take as long as the TTL to update name servers takes + some)
-open aws certificate manager and see 'status' of the certificate for the domain you specified
+### Validate terraform has completed (can take as long as the TTL to update name servers takes + some)
+Once DNS name server records have updated and pointed to the AWS NS servers, the cert validation in terraform should complete, and proceed with deploying the rest of the infrastructure.
 
 ## Step 4: Deploy Notes Service
 1)  `cd ../services/notes`
