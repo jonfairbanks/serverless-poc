@@ -48,6 +48,7 @@ rename `.env.example` to `.env` and update to your domain
 run `npm start`
 
 ## TODO:
+ - [ ] Make react actually use env vars for api endpoint :D
  - [ ] Deploy a db with terraform and use it for the notes service
  - [ ] Deploy an s3 bucket and cloudfront distribution with terraform and add front end deployment script
  - [ ] Make react front end use SSM key store for environment variables like serverless and terraform do
