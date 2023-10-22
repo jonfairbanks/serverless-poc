@@ -35,18 +35,20 @@ open aws certificate manager and see 'status' of the certificate for the domain 
 
 ## Deploy serverless functions
 cd ../services/notes
-sls deploy
+
+run `sls deploy`
 
 ## Run front end (WIP)
 rename `.env.example` to `.env` and update to your domain
-`npm start`
+
+run `npm start`
 
 ## TODO:
- [ ] Deploy a db with terraform and use it for the notes service
- [ ] Deploy an s3 bucket and cloudfront distribution with terraform and add front end deployment script
- [ ] Make react front end use SSM key store for environment variables like serverless and terraform do
- [ ] Terraform cloud workspace implementation?
- [ ] Organize terraform resources much more nicely :D 
+ - [ ] Deploy a db with terraform and use it for the notes service
+ - [ ] Deploy an s3 bucket and cloudfront distribution with terraform and add front end deployment script
+ - [ ] Make react front end use SSM key store for environment variables like serverless and terraform do
+ - [ ] Terraform cloud workspace implementation?
+ - [ ] Organize terraform resources much more nicely :D 
 
 ## Remove everything
 cd infrastructure and run `terraform destroy`
