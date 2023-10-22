@@ -10,14 +10,18 @@ provide access key and secret key
 
 ### Deploy terraform infrastructure
 #### Configure TF Vars
-open infrastructure/terraform.tfvars and set your primary domain (this will be used to create the dns zone in route 53)
+open `infrastructure/terraform.tfvars` and set your primary domain (this will be used to create the dns zone in route 53)
 *These could and probably should be defined in a terraform cloud workspace or otherwise in an env variables or passed as arguments to terraform cli (another problem for another day)
 
 #### Deploy
-cd infrastructure
-terraform init
-terraform plan
-terraform apply
+
+`cd infrastructure`
+
+`terraform init`
+
+`terraform plan`
+
+`terraform apply`
 
 ## Point domain to AWS Route 53
 https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/migrate-dns-domain-in-use.html
