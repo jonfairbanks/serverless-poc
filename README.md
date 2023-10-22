@@ -54,6 +54,8 @@ run `npm start`
  - [ ] Make react front end use SSM key store for environment variables like serverless and terraform do
  - [ ] Terraform cloud workspace implementation?
  - [ ] Organize terraform resources much more nicely :D 
+ - [ ] Configure log retention on serverless functions to not be wasteful on storage
+ - [ ] right size memory on serverless function to reduce cost per second of runtime
 
 ## Remove everything
 cd infrastructure and run `terraform destroy`
