@@ -47,3 +47,6 @@ rename `.env.example` to `.env` and update to your domain
  [ ] Make react front end use SSM key store for environment variables like serverless and terraform do
  [ ] Terraform cloud workspace implementation? 
 
+## Remove everything
+cd infrastructure and run `terraform destroy`
+cd services/notes and run `sls remove`
