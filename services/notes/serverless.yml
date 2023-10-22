@@ -1,0 +1,87 @@
+service: notes
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+
+plugins:
+  - serverless-domain-manager
+
+custom:
+  customDomain:
+    domainName: "api.${ssm:/primary_domain_name}"
+    certificateArn: ${ssm:/primary_domain_cert_arn}
+    basePath: "notes"
+    createRoute53Record: true
+    createRoute53IPv6Record: true
+    endpointType: 'regional'
+    securityPolicy: tls_1_2
+    apiType: rest
+    autoDomain: true
+
+functions:
+
+  addNote:
+    handler: index.add_note
+    events:
+      - http:
+          path: /
+          method: post
+          cors: 
+            origin: '*'
+            headers: '*'
+
+  getNotes:
+    handler: index.get_notes
+    events:
+      - http:
+          path: /
+          method: get
+          cors: 
+            origin: '*'
+            headers: '*'
+
+  getNoteById:
+    handler: index.get_note_by_id
+    events:
+      - http:
+          path: /{note_id}
+          method: get
+          request:
+            parameters:
+              paths:
+                note_id: true
+          cors: 
+            origin: '*'
+            headers: '*'
+
+  updateNote:
+    handler: index.update_note
+    events:
+      - http:
+          path: /{note_id}
+          method: post
+          request:
+            parameters:
+              paths:
+                note_id: true
+          cors: 
+            origin: '*'
+            headers: '*'
+
+  deleteNote:
+    handler: index.delete_note
+    events:
+      - http:
+          path: /{note_id}
+          method: delete
+          request:
+            parameters:
+              paths:
+                note_id: true
+          cors: 
+            origin: '*'
+            headers: '*'
+
