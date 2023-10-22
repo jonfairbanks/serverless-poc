@@ -29,6 +29,7 @@ sudo  ./aws/install
 
  - AWS Access Keys:
 AWS Console > User Profile > Security Credentials > Access Keys > Click `Create Access Key`
+*These are root access keys, ideally you'd create a group in IAM, define the least privaledged permissions for the group, add user to the group, then get access tokens for said user, instead of root account*
 
 ## Step 1: Configure AWS cli to use credentials
 - run `aws configure`

@@ -41,8 +41,6 @@
     ]
   },
   "devDependencies": {
-    "@aws-sdk/client-ssm": "^3.433.0",
-    "install": "^0.13.0",
-    "npm": "^10.2.1"
+    "@aws-sdk/client-ssm": "^3.433.0"
   }
 }
