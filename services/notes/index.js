@@ -8,15 +8,17 @@ const headers = {
 
 // CREATE
 module.exports.add_note = async (event) => {
+
+  // get event body
   var body = JSON.parse(event.body)
+
   // connect to database
   await mongoose.connect();
 
   // insert note to database
-  const note = new Note({
+  const note = await Note.create({
       text: body?.text || "test note text"
   })
-  note.save()
 
   return {
     statusCode: 200,
@@ -32,9 +34,13 @@ module.exports.add_note = async (event) => {
 // READ
 module.exports.get_notes = async (event) => {
 
+  // get event body
+  var body = JSON.parse(event.body)
+
+  // connect to database
   await mongoose.connect();
 
-  // insert note to database
+  // get all notes
   const notes = await Note.find()
 
   return {
@@ -52,6 +58,8 @@ module.exports.get_note_by_id = async (event) => {
 
   // get note id from url path
   const note_id = event.pathParameters.note_id
+  await mongoose.connect();
+  const note = await Note.findById(note_id)
 
   // find note in database
 
@@ -60,6 +68,7 @@ module.exports.get_note_by_id = async (event) => {
     headers: headers,
     body: JSON.stringify({
       message: `here is your note: ${note_id}`,
+      note: note,
       input: event,
     }),
   };
@@ -71,13 +80,23 @@ module.exports.update_note = async (event) => {
   // get note id from url path
   const note_id = event.pathParameters.note_id
 
+  // get event body
+  var body = JSON.parse(event.body)
+
+  // connect to database
+  await mongoose.connect();
+
   // update note in database
+  const note = await Note.findByIdAndUpdate( note_id, {
+      text: body?.text
+  }, {new: true})
 
   return {
     statusCode: 200,
     headers: headers,
     body: JSON.stringify({
-      message: `Your updated note: ${note_id}`,
+      message: `Note with id ${note_id} has been updated`,
+      note: note,
       input: event,
     }),
   };
@@ -89,13 +108,18 @@ module.exports.delete_note = async (event) => {
   // get note id from url path
   const note_id = event.pathParameters.note_id
 
-  // delete note from database
+  // connect to database
+  await mongoose.connect();
+
+  // update note in database
+  const note = await Note.findByIdAndDelete( note_id)
 
   return {
     statusCode: 200,
     headers: headers,
     body: JSON.stringify({
       message: `note ${note_id} has been deleted`,
+      note: note,
       input: event,
     }),
   };
