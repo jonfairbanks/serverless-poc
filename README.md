@@ -12,7 +12,7 @@ The backend is comprised of various JavascriptServerless functions behind an AWS
 To get started you will need to make sure you have the following Command line tools installed
 
 **Prerequisites:**
-
+- An Unused domain (this will take it over completely)
 - AWS Cli
 https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 ```sh
