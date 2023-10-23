@@ -12,7 +12,7 @@ The backend is comprised of various JavascriptServerless functions behind an AWS
 To get started you will need to make sure you have the following Command line tools installed
 
 **Prerequisites:**
-
+- An Unused domain (this will take it over completely)
 - AWS Cli
 https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 ```sh
@@ -34,8 +34,13 @@ AWS Console > User Profile > Security Credentials > Access Keys > Click `Create 
 
 ## Step 2: Deploy Terraform Infrastructure
 #### 1) Configure TF Vars
-- open `infrastructure/terraform.tfvars` and set your primary domain (this will be used to create the dns zone in route 53)
-
+- Save the below as `infrastructure/terraform.tfvars` making sure to populate the values
+```
+primary_domain = ""
+mongodb_atlas_public_key = ""
+mongodb_atlas_private_key = ""
+mongodb_atlas_org_id = ""
+```
 *These could and probably should be defined in a terraform cloud workspace or otherwise in an env variables or passed as arguments to terraform cli (another problem for another day)*
 
 #### 2) Deploy Infrastructure
@@ -64,12 +69,15 @@ Once DNS name server records have updated and pointed to the AWS NS servers, the
 
 ## Step 4: Deploy Notes Service
 1)  `cd ../services/notes`
-2)  `npm install serverless-domain-manager`
+2)  `npm install`
 3) run `sls deploy`
+
+After the entire service is deployed, you can deploy just one function you're working on much more quickly you can run `sls deploy -f addNote` to deploy any single function by its name
 
 ## Step 5: Deploy React Front End to S3 (fronted by cloudfront distribution)
 1) run `cd ../web-ui`
-2) run `npm run deploy`
+2) run `npm install`
+3) run `npm run deploy`
 
 ### Development:
 1)  `npm start`
