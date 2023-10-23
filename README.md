@@ -34,8 +34,13 @@ AWS Console > User Profile > Security Credentials > Access Keys > Click `Create 
 
 ## Step 2: Deploy Terraform Infrastructure
 #### 1) Configure TF Vars
-- open `infrastructure/terraform.tfvars` and set your primary domain (this will be used to create the dns zone in route 53)
-
+- Save the below as `infrastructure/terraform.tfvars` making sure to populate the values
+```
+primary_domain = ""
+mongodb_atlas_public_key = ""
+mongodb_atlas_private_key = ""
+mongodb_atlas_org_id = ""
+```
 *These could and probably should be defined in a terraform cloud workspace or otherwise in an env variables or passed as arguments to terraform cli (another problem for another day)*
 
 #### 2) Deploy Infrastructure

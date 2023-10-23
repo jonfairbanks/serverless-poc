@@ -3,6 +3,7 @@ const headers = {
   'Access-Control-Allow-Credentials': true,
 }
 
+const mongo_uri = process.env['MONGO_CONNECTION_STRING']
 // CREATE
 module.exports.add_note = async (event) => {
 
@@ -13,6 +14,7 @@ module.exports.add_note = async (event) => {
     headers: headers,
     body: JSON.stringify({
       message: "Got note!",
+      mongo_uri: mongo_uri,
       input: event,
     }),
   };

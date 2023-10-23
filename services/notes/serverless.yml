@@ -5,6 +5,9 @@ provider:
   name: aws
   runtime: nodejs18.x
   region: us-east-1
+  environment:
+    MONGO_CONNECTION_STRING: ${ssm:/primary_db_connection_string}
+
 
 plugins:
   - serverless-domain-manager
