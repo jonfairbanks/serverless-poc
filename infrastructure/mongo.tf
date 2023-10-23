@@ -56,6 +56,6 @@ resource "mongodbatlas_cluster" "atlas_cluster" {
 resource "aws_ssm_parameter" "primary_db_connection_string" {
   name = "primary_db_connection_string"
   type = "SecureString"
-  value = replace(mongodbatlas_cluster.atlas_cluster.connection_strings[0].standard_srv, "mongodb+srv://", "mongodb+srv://${mongodbatlas_database_user.db-user.username}:${coalesce(nonsensitive(mongodbatlas_database_user.db-user.password), "null")}@")
+  value = "${replace(mongodbatlas_cluster.atlas_cluster.connection_strings[0].standard_srv, "mongodb+srv://", "mongodb+srv://${mongodbatlas_database_user.db-user.username}:${coalesce(nonsensitive(mongodbatlas_database_user.db-user.password), "null")}@")}/${local.project_name}-db"
   description = "Connection String for primary mongo db"
 }
