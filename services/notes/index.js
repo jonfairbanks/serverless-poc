@@ -1,20 +1,29 @@
+const mongoose = require('./db')
+const Note = require('./models/note')
+
 const headers = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Credentials': true,
 }
 
-const mongo_uri = process.env['MONGO_CONNECTION_STRING']
 // CREATE
 module.exports.add_note = async (event) => {
+  var body = JSON.parse(event.body)
+  // connect to database
+  await mongoose.connect();
 
-  // add note to database
+  // insert note to database
+  const note = new Note({
+      text: body?.text || "test note text"
+  })
+  note.save()
 
   return {
     statusCode: 200,
     headers: headers,
     body: JSON.stringify({
       message: "Got note!",
-      mongo_uri: mongo_uri,
+      note: note,
       input: event,
     }),
   };
@@ -23,14 +32,18 @@ module.exports.add_note = async (event) => {
 // READ
 module.exports.get_notes = async (event) => {
 
-  // get all notes from db
+  await mongoose.connect();
+
+  // insert note to database
+  const notes = await Note.find()
 
   return {
     statusCode: 200,
     headers: headers,
     body: JSON.stringify({
       message: "Here are your notes!!",
-      debug: event,
+      notes: notes,
+      input: event,
     }),
   };
 };
