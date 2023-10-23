@@ -67,6 +67,8 @@ Once DNS name server records have updated and pointed to the AWS NS servers, the
 2)  `npm install serverless-domain-manager`
 3) run `sls deploy`
 
+After the entire service is deployed, you can deploy just one function you're working on much more quickly you can run `sls deploy -f addNote` to deploy any single function by its name
+
 ## Step 5: Deploy React Front End to S3 (fronted by cloudfront distribution)
 1) run `cd ../web-ui`
 2) run `npm run deploy`
