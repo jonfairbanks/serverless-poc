@@ -71,7 +71,8 @@ After the entire service is deployed, you can deploy just one function you're wo
 
 ## Step 5: Deploy React Front End to S3 (fronted by cloudfront distribution)
 1) run `cd ../web-ui`
-2) run `npm run deploy`
+2) run `npm install`
+3) run `npm run deploy`
 
 ### Development:
 1)  `npm start`
