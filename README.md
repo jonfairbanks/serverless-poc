@@ -2,14 +2,11 @@
   
 
 # serverless-poc
-
 This Repo demonstrates using Terraform + Serverless + React to deploy a full stack application on AWS.
 
 The core Infrastructure resources such as DNS zones, buckets, databases, queues, etc. are deployed via Terraform.
 
 The backend is comprised of various JavascriptServerless functions behind an AWS API Gateway. The front end is hosted on S3 and fronted by a CloudFront distribution.
-
-  
 
 ## Getting Started
 To get started you will need to make sure you have the following Command line tools installed
@@ -66,7 +63,7 @@ Once DNS name server records have updated and pointed to the AWS NS servers, the
 
 ## Step 4: Deploy Notes Service
 1)  `cd ../services/notes`
-2)  `npm install`
+2)  `npm install serverless-domain-manager`
 3) run `sls deploy`
 
 ## Step 5: Deploy React Front End to S3 (fronted by cloudfront distribution)
