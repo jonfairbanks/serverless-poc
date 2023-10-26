@@ -27,6 +27,7 @@ custom:
 functions:
 
   addNote:
+    timeout: 30
     handler: index.add_note
     logRetentionInDays: 30
     events:
@@ -38,6 +39,7 @@ functions:
             headers: '*'
 
   getNotes:
+    timeout: 30
     handler: index.get_notes
     logRetentionInDays: 30
     events:
@@ -49,6 +51,7 @@ functions:
             headers: '*'
 
   getNoteById:
+    timeout: 30
     handler: index.get_note_by_id
     logRetentionInDays: 30
     events:
@@ -64,6 +67,7 @@ functions:
             headers: '*'
 
   updateNote:
+    timeout: 30
     handler: index.update_note
     logRetentionInDays: 30
     events:
@@ -79,6 +83,7 @@ functions:
             headers: '*'
 
   deleteNote:
+    timeout: 30
     handler: index.delete_note
     logRetentionInDays: 30
     events:
